@@ -57,6 +57,10 @@ User* OnlineStore::authenticate(string _email, string _password) {
 	return NULL;
 }
 
+void OnlineStore::addNewManager(string _email, string _password, string _name) {
+	users.push_back(new Manager(_email, _password, _name));
+}
+
 OnlineStore* OnlineStore::getInstance() {
 	if (instance == 0) {
 		instance = new OnlineStore();

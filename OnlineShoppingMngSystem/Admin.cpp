@@ -1,5 +1,6 @@
 #include "Admin.h"
 #include <iostream>
+#include "OnlineStore.h"
 
 using namespace std;
 /*
@@ -33,6 +34,7 @@ void Admin::userMenu() {
 
 void Admin::managerMenu() {
 	string choice;
+	string _email, _password, _name;
 	system("CLS");
 	cout << " === Welcome to Admin Manage Account for Manager Menu === " << endl;
 	while (true) {
@@ -45,7 +47,17 @@ void Admin::managerMenu() {
 		cout << "Enter your choice: ";
 		cin >> choice;
 		if (choice == "1") {
-
+			system("CLS");
+			cout << " === ADD MANAGER === " << endl;
+			cout << "Enter Email: ";
+			cin >> _email;
+			cout << "Enter Password: ";
+			cin >> _password;
+			cout << "Enter Username: ";
+			cin >> _name;
+			if (_email != "" && _password != "" && _name != "") {
+				parent->addNewManager(_email, _password, _name);
+			}
 		}
 		if (choice == "2") {
 

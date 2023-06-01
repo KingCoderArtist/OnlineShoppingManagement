@@ -7,7 +7,11 @@ class OnlineStore;
 #pragma once
 class User
 {
-private:
+	/*
+	Class Memebers are protected because
+	it can be accessed by derivated classes
+	*/
+protected:
 	string email;
 	string password;
 	/*

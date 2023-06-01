@@ -1,6 +1,7 @@
 #pragma once
 #include <list>
 #include "User.h"
+#include "Manager.h"
 using namespace std;
 class OnlineStore
 {
@@ -12,8 +13,8 @@ private:
 
 	// Current Authenticated User
 	User* curUser;
-	OnlineStore();
 public:
+	OnlineStore();
 	/* 
 	initialize function is called first time once when program starts.
 	it loads datas (users, orders, etc) from file.
@@ -30,6 +31,11 @@ public:
 	Else Return Null
 	*/
 	User* authenticate(string _email, string _password);
+
+	/*
+	Add new Manager
+	*/
+	void addNewManager(string _email, string _password, string _name);
 
 	static OnlineStore* getInstance();
 protected:
