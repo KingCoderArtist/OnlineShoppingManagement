@@ -18,23 +18,32 @@ void OnlineStore::initialize() {
 
 
 void OnlineStore::mainMenu() {
-	string email, password;
-	cout << "Welcome to Online Management Shopping System" << endl;
+	string email, password, choice;
 	while (true) {
-		cout << endl << "First of all, you must login to use this system" << endl;
+		system("CLS");
+		cout << "Welcome to Main Menu" << endl;
+		cout << "Enter your choice (1-Login,2-Exit): ";
+		cin >> choice;
+		while (choice == "1") {
+			cout << endl << " ========== LOGIN ========== " << endl << endl;
+			cout << "Enter Email: ";
+			cin >> email;
+			cout << "Enter Password: ";
+			cin >> password;
 
-		cout << endl << " ========== LOGIN ========== " << endl << endl;
-		cout << "Enter Email: ";
-		cin >> email;
-		cout << "Enter Password: ";
-		cin >> password;
-
-		curUser = authenticate(email, password);
-		if (curUser) {
-			curUser->userMenu();
+			curUser = authenticate(email, password);
+			if (curUser) {
+				curUser->userMenu();
+				// when user exits userMenu. then redirects choice
+				break;
+			}
+			else {
+				cout << endl << "Login Failed: Wrong Email or Password" << endl;
+			}
 		}
-		else {
-			cout << endl << "Login Failed: Wrong Email or Password" << endl;
+		if (choice == "2") {
+			// Exit app
+			exit(1);
 		}
 	}
 }

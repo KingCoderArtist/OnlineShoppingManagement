@@ -12,7 +12,21 @@ Admin::Admin() : User("admin@gmail.com", "1234", 0){
 }
 
 void Admin::userMenu() {
+	string choice;
 	system("CLS");
-	cout << endl << endl << " === Welcome to Admin Menu === " << endl;
+	cout << " === Welcome to Admin Menu === " << endl;
+	while (true) {
+		cout << "Enter your choice (1-Manage Manager,2-Manage Customer,3-Sign Out): ";
+		cin >> choice;
+		if (choice == "1") {
+
+		}
+		if (choice == "2") {
+
+		}
+		if (choice == "3") {
+			return;
+		}
+	}
 
 }
