@@ -9,3 +9,9 @@ Manager::Manager(string _email, string _password, string _name)
 void Manager::userMenu() {
 
 }
+
+void Manager::print(ostream& out) {
+	out << name;
+}
+
+string Manager::getName() { return name; }

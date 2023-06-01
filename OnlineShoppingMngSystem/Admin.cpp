@@ -75,7 +75,7 @@ void Admin::managerMenu() {
 
 		}
 		if (choice == "4") {
-
+			parent->showMangers();
 		}
 		if (choice == "5") {
 
@@ -84,6 +84,10 @@ void Admin::managerMenu() {
 			return;
 		}
 	}
+}
+
+void Admin::print(ostream& out) {
+
 }
 
 void Admin::customerMenu() {

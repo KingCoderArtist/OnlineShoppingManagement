@@ -1,5 +1,6 @@
 
 #include <string>
+#include <iostream>
 
 using namespace std;
 
@@ -26,8 +27,16 @@ public:
 	User(string, string, int);
 	// Abstract Pattern
 	virtual void userMenu() = 0;
+	// For managers, customers
+	virtual void print(ostream&) = 0;
 	string getEmail();
 	string getPassword();
 	int getType();
+	friend ostream& operator<<(ostream& out, User& user) {
+		out << "USER " << user.type << " " << user.email << " " << user.password << " ";
+		user.print(out);
+		out << endl;
+		return out;
+	}
 };
 

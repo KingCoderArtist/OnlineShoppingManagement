@@ -1,5 +1,6 @@
 #include "OnlineStore.h"
 #include <iostream>
+#include <fstream>
 #include "Admin.h"
 
 using namespace std;
@@ -64,15 +65,32 @@ bool OnlineStore::addNewManager(string _email, string _password, string _name) {
 		}
 	}
 	users.push_back(new Manager(_email, _password, _name));
+	saveToFile();
 	return true;
 }
 
 void OnlineStore::showMangers() {
+	int count = 0;
+	printf(" === MANAGER LIST === \n");
+	printf("%16s %16s %16s\n", "Email", "Name", "Password");
 	for (User* user : users) {
 		if (user->getType() == USER_TYPE_MANAGER) {
-
+			Manager* m_user = (Manager *)user;
+			printf("%16s %16s %16s\n", user->getEmail().c_str(), m_user->getName().c_str(), user->getPassword().c_str());
+			count += 1;
 		}
 	}
+	printf("Total: %d Managers Registered\n\n", count);
+}
+
+void OnlineStore::saveToFile() {
+	fstream fp;
+	fp.open("db.txt", ios::app | ios::out);
+	for (User* user : users) {
+		fp << user << endl;
+		cout << user << endl;
+	}
+	fp.close();
 }
 
 OnlineStore* OnlineStore::getInstance() {

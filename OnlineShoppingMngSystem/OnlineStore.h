@@ -46,6 +46,10 @@ public:
 
 	void showMangers();
 
+	/*
+	Save to DB
+	*/
+	void saveToFile();
 	static OnlineStore* getInstance();
 protected:
 };
