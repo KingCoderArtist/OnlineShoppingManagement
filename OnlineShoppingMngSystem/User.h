@@ -7,6 +7,7 @@ class OnlineStore;
 #pragma once
 class User
 {
+private:
 	string email;
 	string password;
 	/*
@@ -17,5 +18,9 @@ class User
 	int type;
 	// Parent Class Object
 	OnlineStore* parent;
+public:
+	User(string, string, int);
+	// Abstract Pattern
+	virtual void userMenu() = 0;
 };
 

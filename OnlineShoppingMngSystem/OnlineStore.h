@@ -6,7 +6,7 @@ class OnlineStore
 {
 private:
 	// User List
-	list<User> users;
+	list<User *> users;
 	// singleton store instance
 	static OnlineStore* instance;
 	OnlineStore();

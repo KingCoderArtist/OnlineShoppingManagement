@@ -1,5 +1,6 @@
 #include "OnlineStore.h"
 #include <iostream>
+#include "Admin.h"
 
 using namespace std;
 
@@ -11,7 +12,8 @@ OnlineStore::OnlineStore() {
 }
 
 void OnlineStore::initialize() {
-
+	// Add new Admin with email: admin@gmail.com password: 1234
+	users.push_back(new Admin());
 }
 void OnlineStore::mainMenu() {
 	cout << "Welcome to Online Management Shopping System" << endl;
