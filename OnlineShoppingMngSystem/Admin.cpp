@@ -8,7 +8,7 @@ using namespace std;
 	password: 1234
 	type: 0 (Admin)
 */
-Admin::Admin() : User("admin@gmail.com", "1234", 0){
+Admin::Admin() : User("admin@gmail.com", "1234", USER_TYPE_ADMIN){
 	
 }
 
@@ -56,7 +56,16 @@ void Admin::managerMenu() {
 			cout << "Enter Username: ";
 			cin >> _name;
 			if (_email != "" && _password != "" && _name != "") {
-				parent->addNewManager(_email, _password, _name);
+				bool flag = parent->addNewManager(_email, _password, _name);
+				if (flag) {
+					cout << "Added Successfully!" << endl;
+				}
+				else {
+					cout << "Email Already Exist!" << endl;
+				}
+			}
+			else {
+				cout << "Missing information! Please Try Again!" << endl;
 			}
 		}
 		if (choice == "2") {

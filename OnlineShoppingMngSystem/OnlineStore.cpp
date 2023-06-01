@@ -8,7 +8,7 @@ using namespace std;
 OnlineStore* OnlineStore::instance = 0;
 
 OnlineStore::OnlineStore() {
-
+	curUser = 0;
 }
 
 void OnlineStore::initialize() {
@@ -57,8 +57,22 @@ User* OnlineStore::authenticate(string _email, string _password) {
 	return NULL;
 }
 
-void OnlineStore::addNewManager(string _email, string _password, string _name) {
+bool OnlineStore::addNewManager(string _email, string _password, string _name) {
+	for (User* user : users) {
+		if (user->getEmail() == _email) {
+			return false;
+		}
+	}
 	users.push_back(new Manager(_email, _password, _name));
+	return true;
+}
+
+void OnlineStore::showMangers() {
+	for (User* user : users) {
+		if (user->getType() == USER_TYPE_MANAGER) {
+
+		}
+	}
 }
 
 OnlineStore* OnlineStore::getInstance() {

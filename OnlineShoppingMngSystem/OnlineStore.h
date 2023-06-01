@@ -3,6 +3,11 @@
 #include "User.h"
 #include "Manager.h"
 using namespace std;
+
+#define USER_TYPE_ADMIN 0
+#define USER_TYPE_MANAGER 1
+#define USER_TYPE_CUSTOMER 2
+
 class OnlineStore
 {
 private:
@@ -34,8 +39,12 @@ public:
 
 	/*
 	Add new Manager
+	If _email exists return false
+	If success return true
 	*/
-	void addNewManager(string _email, string _password, string _name);
+	bool addNewManager(string _email, string _password, string _name);
+
+	void showMangers();
 
 	static OnlineStore* getInstance();
 protected:

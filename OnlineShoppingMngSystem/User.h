@@ -28,5 +28,6 @@ public:
 	virtual void userMenu() = 0;
 	string getEmail();
 	string getPassword();
+	int getType();
 };
 
