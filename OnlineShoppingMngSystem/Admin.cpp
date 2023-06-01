@@ -12,5 +12,7 @@ Admin::Admin() : User("admin@gmail.com", "1234", 0){
 }
 
 void Admin::userMenu() {
-	cout << "Welcome to Admin Menu" << endl;
+	system("CLS");
+	cout << endl << endl << " === Welcome to Admin Menu === " << endl;
+
 }

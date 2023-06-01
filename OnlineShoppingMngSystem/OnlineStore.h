@@ -9,6 +9,9 @@ private:
 	list<User *> users;
 	// singleton store instance
 	static OnlineStore* instance;
+
+	// Current Authenticated User
+	User* curUser;
 	OnlineStore();
 public:
 	/* 
@@ -20,6 +23,13 @@ public:
 	After initialize main menu is called to loop
 	*/
 	void mainMenu();
+
+	/*
+	Authenticate User with Email and Password
+	Return the pointer of User in the users list if exist
+	Else Return Null
+	*/
+	User* authenticate(string _email, string _password);
 
 	static OnlineStore* getInstance();
 protected:

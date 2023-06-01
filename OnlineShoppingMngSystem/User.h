@@ -22,5 +22,7 @@ public:
 	User(string, string, int);
 	// Abstract Pattern
 	virtual void userMenu() = 0;
+	string getEmail();
+	string getPassword();
 };
 
