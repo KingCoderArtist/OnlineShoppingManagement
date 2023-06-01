@@ -7,6 +7,8 @@ private:
 public:
 	Admin();
 	void userMenu();
+	void managerMenu();
+	void customerMenu();
 protected:
 };
 

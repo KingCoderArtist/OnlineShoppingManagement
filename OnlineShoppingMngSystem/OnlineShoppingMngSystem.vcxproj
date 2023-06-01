@@ -148,12 +148,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Admin.cpp" />
+    <ClCompile Include="Manager.cpp" />
     <ClCompile Include="OnlineShoppingMngSystem.cpp" />
     <ClCompile Include="OnlineStore.cpp" />
     <ClCompile Include="User.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Admin.h" />
+    <ClInclude Include="Manager.h" />
     <ClInclude Include="OnlineStore.h" />
     <ClInclude Include="User.h" />
   </ItemGroup>

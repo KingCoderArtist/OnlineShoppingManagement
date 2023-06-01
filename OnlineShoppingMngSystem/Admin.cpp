@@ -19,7 +19,7 @@ void Admin::userMenu() {
 		cout << "Enter your choice (1-Manage Manager,2-Manage Customer,3-Sign Out): ";
 		cin >> choice;
 		if (choice == "1") {
-
+			managerMenu();
 		}
 		if (choice == "2") {
 
@@ -28,5 +28,43 @@ void Admin::userMenu() {
 			return;
 		}
 	}
+
+}
+
+void Admin::managerMenu() {
+	string choice;
+	system("CLS");
+	cout << " === Welcome to Admin Manage Account for Manager Menu === " << endl;
+	while (true) {
+		cout << "1 - Add Manager" << endl;
+		cout << "2 - Delete Manager" << endl;
+		cout << "3 - Edit Manager" << endl;
+		cout << "4 - View Managers" << endl;
+		cout << "5 - Search Manager" << endl;
+		cout << "6 - Return to Admin Menu" << endl;
+		cout << "Enter your choice: ";
+		cin >> choice;
+		if (choice == "1") {
+
+		}
+		if (choice == "2") {
+
+		}
+		if (choice == "3") {
+
+		}
+		if (choice == "4") {
+
+		}
+		if (choice == "5") {
+
+		}
+		if (choice == "6") {
+			return;
+		}
+	}
+}
+
+void Admin::customerMenu() {
 
 }
