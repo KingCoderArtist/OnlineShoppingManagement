@@ -11,6 +11,6 @@ private:
 	int count;
 	double price;
 public:
-	Order(string, string)
+	Order(string, string);
 };
 

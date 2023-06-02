@@ -3,6 +3,9 @@
 #include "User.h"
 #include "Manager.h"
 #include "Customer.h"
+#include "Product.h"
+#include "Order.h"
+#include "OrderItem.h"
 using namespace std;
 
 #define USER_TYPE_ADMIN 0
@@ -14,6 +17,9 @@ class OnlineStore
 private:
 	// User List
 	list<User *> users;
+	list<Product*> products;
+	list<Order*> orders;
+	list<OrderItem> orderItems;
 	// singleton store instance
 	static OnlineStore* instance;
 

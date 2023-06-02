@@ -153,6 +153,7 @@
     <ClCompile Include="OnlineShoppingMngSystem.cpp" />
     <ClCompile Include="OnlineStore.cpp" />
     <ClCompile Include="Order.cpp" />
+    <ClCompile Include="OrderItem.cpp" />
     <ClCompile Include="Product.cpp" />
     <ClCompile Include="User.cpp" />
   </ItemGroup>
@@ -162,6 +163,7 @@
     <ClInclude Include="Manager.h" />
     <ClInclude Include="OnlineStore.h" />
     <ClInclude Include="Order.h" />
+    <ClInclude Include="OrderItem.h" />
     <ClInclude Include="Product.h" />
     <ClInclude Include="User.h" />
   </ItemGroup>

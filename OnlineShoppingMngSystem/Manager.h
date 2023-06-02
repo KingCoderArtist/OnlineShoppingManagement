@@ -11,5 +11,7 @@ public:
 	void print(ostream&);
 	string getName();
 	void setName(string _name);
+	void productMenu();
+	void orderMenu();
 };
 
