@@ -79,7 +79,14 @@ public:
 	Customer* searchCustomer(string _email);
 	void showCustomers();
 
-
+	/*
+	Customer Functions the same as Manager function
+	*/
+	bool addNewProduct(string _pin, string _name, double _rate);
+	bool deleteProduct(string _pin);
+	bool updateProduct(string _pin, string _name, double _rate);
+	Product* searchProduct(string _name);
+	void showProducts();
 	/*
 	Save to DB
 	*/

@@ -21,13 +21,14 @@ void OnlineStore::initialize() {
 		users.push_back(new Admin());
 	}
 	else {
+		// Load from File
 		while (!fp.eof()) {
 			string type_token;
-			string user_type_token;
-			string _email, _password, _name, _address, _number;
 			fp >> type_token;
 			cout << type_token << " ";
 			if (type_token == "USER") {
+				string user_type_token;
+				string _email, _password, _name, _address, _number;
 				fp >> user_type_token;
 				cout << user_type_token << " ";
 				if (user_type_token == "0") { // Admin
@@ -45,6 +46,13 @@ void OnlineStore::initialize() {
 					cout << _email << " " << _password << " " << _name << " " << _address << " " << _number;
 					users.push_back(new Customer(_email, _password, _name, _address, _number));
 				}
+			}
+			else if (type_token == "PRODUCT") {
+				string _pin, _name;
+				double _rate;
+				fp >> _pin >> _name >> _rate;
+				cout << _pin << " " << _name << " " << _rate;
+				products.push_back(new Product(_pin, _name, _rate));
 			}
 			cout << endl;
 		}
@@ -213,12 +221,71 @@ Customer* OnlineStore::searchCustomer(string _email) {
 	return NULL;
 }
 
+
+bool OnlineStore::addNewProduct(string _pin, string _name, double _rate) {
+	for (Product* product : products) {
+		if (*product == _pin) {
+			return false;
+		}
+	}
+	products.push_back(new Product(_pin, _name, _rate));
+	saveToFile();
+	return true;
+}
+
+bool OnlineStore::deleteProduct(string _pin) {
+	for (Product* product : products) {
+		if (*product == _pin) {
+			products.remove(product);
+			saveToFile();
+			return true;
+		}
+	}
+	return false;
+}
+
+bool OnlineStore::updateProduct(string _pin, string _name, double _rate) {
+	for (Product* product : products) {
+		if (*product == _pin) {
+			product->setName(_name);
+			product->setRate(_rate);
+			saveToFile();
+			return true;
+		}
+	}
+	return false;
+}
+
+void OnlineStore::showProducts() {
+	int count = 0;
+	printf(" === PRODUCT LIST === \n");
+	printf("%16s %16s %16s\n", "Identification", "Name", "Rate");
+	for (Product* product : products) {
+		printf("%16s %16s %16lf\n", product->getPin().c_str(), product->getName().c_str(), product->getRate());
+		count += 1;
+	}
+	printf("Total: %d Products Registered\n\n", count);
+}
+
+Product* OnlineStore::searchProduct(string _pin) {
+	for (Product* product : products) {
+		if (*product == _pin) {
+			return product;
+		}
+	}
+	return NULL;
+}
+
+
 void OnlineStore::saveToFile() {
 	fstream fp;
 	fp.open("db.txt", ios::out);
 	for (User* user : users) {
 		fp << *user;
 		// cout << *user;
+	}
+	for (Product* product : products) {
+		fp << *product;
 	}
 	fp.close();
 }
