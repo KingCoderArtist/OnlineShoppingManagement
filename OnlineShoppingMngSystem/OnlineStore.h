@@ -2,6 +2,7 @@
 #include <list>
 #include "User.h"
 #include "Manager.h"
+#include "Customer.h"
 using namespace std;
 
 #define USER_TYPE_ADMIN 0
@@ -55,8 +56,23 @@ public:
 	else false
 	*/
 	bool updateManager(string _email, string _password, string _name);
-
+	/*
+	Search Manager
+	If _email exist return Manager pointer
+	else return NULL
+	*/
+	Manager* searchManager(string _email);
 	void showMangers();
+
+	/*
+	Customer Functions the same as Manager function
+	*/
+	bool addNewCustomer(string _email, string _password, string _name, string _address, string _number);
+	bool deleteCustomer(string _email);
+	bool updateCustomer(string _email, string _password, string _name, string _address, string _number);
+	Customer* searchCustomer(string _email);
+	void showCustomers();
+
 
 	/*
 	Save to DB

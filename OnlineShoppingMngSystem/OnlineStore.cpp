@@ -24,7 +24,7 @@ void OnlineStore::initialize() {
 		while (!fp.eof()) {
 			string type_token;
 			string user_type_token;
-			string _email, _password, _name;
+			string _email, _password, _name, _address, _number;
 			fp >> type_token;
 			cout << type_token << " ";
 			if (type_token == "USER") {
@@ -41,7 +41,9 @@ void OnlineStore::initialize() {
 					users.push_back(new Manager(_email, _password, _name));
 				}
 				else if (user_type_token == "2") { // Customer
-
+					fp >> _email >> _password >> _name >> _address >> _number;
+					cout << _email << " " << _password << " " << _name << " " << _address << " " << _number;
+					users.push_back(new Customer(_email, _password, _name, _address, _number));
 				}
 			}
 			cout << endl;
@@ -138,6 +140,77 @@ void OnlineStore::showMangers() {
 		}
 	}
 	printf("Total: %d Managers Registered\n\n", count);
+}
+
+Manager* OnlineStore::searchManager(string _email) {
+	for (User* user : users) {
+		if (*user == _email) {
+			return (Manager*)user;
+		}
+	}
+	return NULL;
+}
+
+
+bool OnlineStore::addNewCustomer(string _email, string _password, string _name, string _address, string _number) {
+	for (User* user : users) {
+		if (*user == _email) {
+			return false;
+		}
+	}
+	users.push_back(new Customer(_email, _password, _name, _address, _number));
+	saveToFile();
+	return true;
+}
+
+bool OnlineStore::deleteCustomer(string _email) {
+	for (User* user : users) {
+		if (user->getType() == USER_TYPE_CUSTOMER && *user == _email) {
+			users.remove(user);
+			saveToFile();
+			return true;
+		}
+	}
+	return false;
+}
+
+bool OnlineStore::updateCustomer(string _email, string _password, string _name, string _address, string _number) {
+	for (User* user : users) {
+		if (user->getType() == USER_TYPE_CUSTOMER && *user == _email) {
+			Customer* m_user = (Customer*)user;
+			user->setPassword(_password);
+			m_user->setName(_name);
+			m_user->setAddress(_address);
+			m_user->setNumber(_number);
+			saveToFile();
+			return true;
+		}
+	}
+	return false;
+}
+
+void OnlineStore::showCustomers() {
+	int count = 0;
+	printf(" === CUSTOMER LIST === \n");
+	printf("%16s %16s %16s %16s %16s\n", "Email", "Name", "Password", "Address", "Number");
+	for (User* user : users) {
+		if (user->getType() == USER_TYPE_CUSTOMER) {
+			Customer* m_user = (Customer*)user;
+			printf("%16s %16s %16s %16s %16s\n", user->getEmail().c_str(), m_user->getName().c_str(), user->getPassword().c_str(), m_user->getAddress().c_str(),
+				m_user->getNumber().c_str());
+			count += 1;
+		}
+	}
+	printf("Total: %d Customers Registered\n\n", count);
+}
+
+Customer* OnlineStore::searchCustomer(string _email) {
+	for (User* user : users) {
+		if (*user == _email) {
+			return (Customer*)user;
+		}
+	}
+	return NULL;
 }
 
 void OnlineStore::saveToFile() {
