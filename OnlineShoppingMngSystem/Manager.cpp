@@ -15,3 +15,5 @@ void Manager::print(ostream& out) {
 }
 
 string Manager::getName() { return name; }
+
+void Manager::setName(string _name) { name = _name; }

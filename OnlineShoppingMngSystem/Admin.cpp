@@ -80,6 +80,13 @@ void Admin::managerMenu() {
 			cout << "Enter Email: ";
 			cin >> _email;
 			if (_email != "") {
+				bool flag = parent->deleteManager(_email);
+				if (flag) {
+					cout << "Deleted Successfully!" << endl;
+				}
+				else {
+					cout << "Email Not Exist!" << endl;
+				}
 			}
 			else {
 				cout << "Missing information! Please Try Again!" << endl;
@@ -87,6 +94,28 @@ void Admin::managerMenu() {
 		}
 		if (choice == "3") {
 			// Edit Manager
+			system("CLS");
+			cout << " === Edit MANAGER === " << endl;
+			cout << "Enter Email to edit: ";
+			cin >> _email;
+
+			cout << "Enter Password: ";
+			cin >> _password;
+			cout << "Enter Username: ";
+			cin >> _name;
+
+			if (_email != "" && _password != "" && _name != "") {
+				bool flag = parent->updateManager(_email, _password, _name);
+				if (flag) {
+					cout << "Updated Successfully!" << endl;
+				}
+				else {
+					cout << "Email Not Exist!" << endl;
+				}
+			}
+			else {
+				cout << "Missing information! Please Try Again!" << endl;
+			}
 		}
 		if (choice == "4") {
 			// View Managers

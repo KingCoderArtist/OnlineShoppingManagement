@@ -103,7 +103,27 @@ bool OnlineStore::addNewManager(string _email, string _password, string _name) {
 }
 
 bool OnlineStore::deleteManager(string _email) {
-	return true;
+	for (User* user : users) {
+		if (user->getType() == USER_TYPE_MANAGER && *user == _email) {
+			users.remove(user);
+			saveToFile();
+			return true;
+		}
+	}
+	return false;
+}
+
+bool OnlineStore::updateManager(string _email, string _password, string _name) {
+	for (User* user : users) {
+		if (user->getType() == USER_TYPE_MANAGER && *user == _email) {
+			Manager* m_user = (Manager*)user;
+			user->setPassword(_password);
+			m_user->setName(_name);
+			saveToFile();
+			return true;
+		}
+	}
+	return false;
 }
 
 void OnlineStore::showMangers() {

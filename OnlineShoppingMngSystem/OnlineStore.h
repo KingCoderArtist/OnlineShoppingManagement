@@ -49,6 +49,12 @@ public:
 	else false
 	*/
 	bool deleteManager(string _email);
+	/*
+	Update Manager
+	If _email exists update and return true
+	else false
+	*/
+	bool updateManager(string _email, string _password, string _name);
 
 	void showMangers();
 

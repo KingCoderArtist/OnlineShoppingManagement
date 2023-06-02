@@ -10,6 +10,7 @@ User::User(string _email, string _password, int _type) {
 
 string User::getEmail() { return email; }
 string User::getPassword() { return password; }
+void User::setPassword(string _password) { password = _password; }
 int User::getType() { return type; }
 bool User::operator==(string _email) {
 	return email == _email;

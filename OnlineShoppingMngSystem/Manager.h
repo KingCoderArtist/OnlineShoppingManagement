@@ -10,5 +10,6 @@ public:
 	void userMenu();
 	void print(ostream&);
 	string getName();
+	void setName(string _name);
 };
 
