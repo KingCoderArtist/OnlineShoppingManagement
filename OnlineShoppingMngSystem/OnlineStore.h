@@ -68,7 +68,7 @@ public:
 	else return NULL
 	*/
 	Manager* searchManager(string _email);
-	void showMangers();
+	void showManagers();
 
 	/*
 	Customer Functions the same as Manager function

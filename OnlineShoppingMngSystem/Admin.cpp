@@ -8,7 +8,7 @@ using namespace std;
 	password: 1234
 	type: 0 (Admin)
 */
-Admin::Admin() : User("admin@gmail.com", "1234", USER_TYPE_ADMIN){
+Admin::Admin() : User("admin", "1234", USER_TYPE_ADMIN){
 	
 }
 
@@ -119,7 +119,7 @@ void Admin::managerMenu() {
 		}
 		if (choice == "4") {
 			// View Managers
-			parent->showCustomers();
+			parent->showManagers();
 		}
 		if (choice == "5") {
 			// Search Manager
@@ -239,7 +239,7 @@ void Admin::customerMenu() {
 		}
 		if (choice == "4") {
 			// View Customers
-			parent->showMangers();
+			parent->showCustomers();
 		}
 		if (choice == "5") {
 			// Search Customer

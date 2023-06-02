@@ -136,7 +136,7 @@ bool OnlineStore::updateManager(string _email, string _password, string _name) {
 	return false;
 }
 
-void OnlineStore::showMangers() {
+void OnlineStore::showManagers() {
 	int count = 0;
 	printf(" === MANAGER LIST === \n");
 	printf("%16s %16s %16s\n", "Email", "Name", "Password");
