@@ -12,6 +12,10 @@ Admin::Admin() : User("admin@gmail.com", "1234", USER_TYPE_ADMIN){
 	
 }
 
+Admin::Admin(string _email, string _password) : User(_email, _password, USER_TYPE_ADMIN) {
+
+}
+
 void Admin::userMenu() {
 	string choice;
 	system("CLS");
@@ -47,6 +51,7 @@ void Admin::managerMenu() {
 		cout << "Enter your choice: ";
 		cin >> choice;
 		if (choice == "1") {
+			// Add Manager
 			system("CLS");
 			cout << " === ADD MANAGER === " << endl;
 			cout << "Enter Email: ";
@@ -69,18 +74,29 @@ void Admin::managerMenu() {
 			}
 		}
 		if (choice == "2") {
-
+			// Delete Manager
+			system("CLS");
+			cout << " === DELETE MANAGER === " << endl;
+			cout << "Enter Email: ";
+			cin >> _email;
+			if (_email != "") {
+			}
+			else {
+				cout << "Missing information! Please Try Again!" << endl;
+			}
 		}
 		if (choice == "3") {
-
+			// Edit Manager
 		}
 		if (choice == "4") {
+			// View Managers
 			parent->showMangers();
 		}
 		if (choice == "5") {
-
+			// Search Manager
 		}
 		if (choice == "6") {
+			// Return to Admin Menu
 			return;
 		}
 	}

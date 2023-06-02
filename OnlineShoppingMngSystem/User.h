@@ -31,6 +31,7 @@ public:
 	virtual void print(ostream&) = 0;
 	string getEmail();
 	string getPassword();
+	bool operator==(string _email);
 	int getType();
 	friend ostream& operator<<(ostream& out, User& user) {
 		out << "USER " << user.type << " " << user.email << " " << user.password << " ";

@@ -43,6 +43,12 @@ public:
 	If success return true
 	*/
 	bool addNewManager(string _email, string _password, string _name);
+	/*
+	Delete Manager
+	If _email exists delete and return true
+	else false
+	*/
+	bool deleteManager(string _email);
 
 	void showMangers();
 

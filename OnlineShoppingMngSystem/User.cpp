@@ -11,3 +11,6 @@ User::User(string _email, string _password, int _type) {
 string User::getEmail() { return email; }
 string User::getPassword() { return password; }
 int User::getType() { return type; }
+bool User::operator==(string _email) {
+	return email == _email;
+}

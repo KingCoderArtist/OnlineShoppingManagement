@@ -13,8 +13,41 @@ OnlineStore::OnlineStore() {
 }
 
 void OnlineStore::initialize() {
-	// Add new Admin with email: admin@gmail.com password: 1234
-	users.push_back(new Admin());
+	fstream fp;
+	fp.open("db.txt", ios::in);
+	if (!fp) {
+		// File not exist
+		// Add new Admin with email: admin@gmail.com password: 1234
+		users.push_back(new Admin());
+	}
+	else {
+		while (!fp.eof()) {
+			string type_token;
+			string user_type_token;
+			string _email, _password, _name;
+			fp >> type_token;
+			cout << type_token << " ";
+			if (type_token == "USER") {
+				fp >> user_type_token;
+				cout << user_type_token << " ";
+				if (user_type_token == "0") { // Admin
+					fp >> _email >> _password;
+					cout << _email << " " << _password;
+					users.push_back(new Admin(_email, _password));
+				}
+				else if (user_type_token == "1") { // Manager
+					fp >> _email >> _password >> _name;
+					cout << _email << " " << _password << " " << _name;
+					users.push_back(new Manager(_email, _password, _name));
+				}
+				else if (user_type_token == "2") { // Customer
+
+				}
+			}
+			cout << endl;
+		}
+		fp.close();
+	}
 }
 
 
@@ -60,12 +93,16 @@ User* OnlineStore::authenticate(string _email, string _password) {
 
 bool OnlineStore::addNewManager(string _email, string _password, string _name) {
 	for (User* user : users) {
-		if (user->getEmail() == _email) {
+		if (*user == _email) {
 			return false;
 		}
 	}
 	users.push_back(new Manager(_email, _password, _name));
 	saveToFile();
+	return true;
+}
+
+bool OnlineStore::deleteManager(string _email) {
 	return true;
 }
 
@@ -85,10 +122,10 @@ void OnlineStore::showMangers() {
 
 void OnlineStore::saveToFile() {
 	fstream fp;
-	fp.open("db.txt", ios::app | ios::out);
+	fp.open("db.txt", ios::out);
 	for (User* user : users) {
-		fp << user << endl;
-		cout << user << endl;
+		fp << *user;
+		// cout << *user;
 	}
 	fp.close();
 }
