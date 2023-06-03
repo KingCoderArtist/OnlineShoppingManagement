@@ -82,9 +82,9 @@ public:
 	/*
 	Customer Functions the same as Manager function
 	*/
-	bool addNewProduct(string _pin, string _name, double _rate);
+	bool addNewProduct(string _pin, string _name, double _rate, int _amount);
 	bool deleteProduct(string _pin);
-	bool updateProduct(string _pin, string _name, double _rate);
+	bool updateProduct(string _pin, string _name, double _rate, int _amount);
 	Product* searchProduct(string _name);
 	void showProducts();
 	/*

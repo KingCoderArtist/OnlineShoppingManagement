@@ -38,6 +38,7 @@ void Manager::productMenu() {
 	string choice;
 	string _pin, _name;
 	double _rate = 0;
+	int _amount = 0;
 	system("CLS");
 	cout << " === Welcome to Manage Product for Manager Menu === " << endl;
 	while (true) {
@@ -59,8 +60,10 @@ void Manager::productMenu() {
 			cin >> _name;
 			cout << "Enter Rate: ";
 			cin >> _rate;
+			cout << "Enter Amount: ";
+			cin >> _amount;
 			if (_pin != "" && _name != "" && _rate != 0) {
-				bool flag = parent->addNewProduct(_pin, _name, _rate);
+				bool flag = parent->addNewProduct(_pin, _name, _rate, _amount);
 				if (flag) {
 					cout << "Added Successfully!" << endl;
 				}
@@ -102,9 +105,11 @@ void Manager::productMenu() {
 			cin >> _name;
 			cout << "Enter Rate: ";
 			cin >> _rate;
+			cout << "Enter Amount: ";
+			cin >> _amount;
 
 			if (_pin != "" && _name != "" && _rate != 0) {
-				bool flag = parent->updateProduct(_pin, _name, _rate);
+				bool flag = parent->updateProduct(_pin, _name, _rate, _amount);
 				if (flag) {
 					cout << "Updated Successfully!" << endl;
 				}
@@ -131,6 +136,7 @@ void Manager::productMenu() {
 			if (product) {
 				cout << "Name: " << product->getName() << endl;
 				cout << "Rate: " << product->getRate() << endl;
+				cout << "Amount: " << product->getAmount() << endl;
 			}
 			else {
 				cout << "Identification Number Not Exist!" << endl;

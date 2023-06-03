@@ -50,9 +50,10 @@ void OnlineStore::initialize() {
 			else if (type_token == "PRODUCT") {
 				string _pin, _name;
 				double _rate;
-				fp >> _pin >> _name >> _rate;
-				cout << _pin << " " << _name << " " << _rate;
-				products.push_back(new Product(_pin, _name, _rate));
+				int _amount;
+				fp >> _pin >> _name >> _rate >> _amount;
+				cout << _pin << " " << _name << " " << _rate << " " << _amount;
+				products.push_back(new Product(_pin, _name, _rate, _amount));
 			}
 			cout << endl;
 		}
@@ -222,13 +223,13 @@ Customer* OnlineStore::searchCustomer(string _email) {
 }
 
 
-bool OnlineStore::addNewProduct(string _pin, string _name, double _rate) {
+bool OnlineStore::addNewProduct(string _pin, string _name, double _rate, int _amount) {
 	for (Product* product : products) {
 		if (*product == _pin) {
 			return false;
 		}
 	}
-	products.push_back(new Product(_pin, _name, _rate));
+	products.push_back(new Product(_pin, _name, _rate, _amount));
 	saveToFile();
 	return true;
 }
@@ -244,11 +245,12 @@ bool OnlineStore::deleteProduct(string _pin) {
 	return false;
 }
 
-bool OnlineStore::updateProduct(string _pin, string _name, double _rate) {
+bool OnlineStore::updateProduct(string _pin, string _name, double _rate, int _amount) {
 	for (Product* product : products) {
 		if (*product == _pin) {
 			product->setName(_name);
 			product->setRate(_rate);
+			product->setAmount(_amount);
 			saveToFile();
 			return true;
 		}
