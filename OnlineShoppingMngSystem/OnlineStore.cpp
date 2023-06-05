@@ -294,6 +294,23 @@ Product* OnlineStore::searchProduct(string _pin) {
 	return NULL;
 }
 
+void OnlineStore::addNewOrder(Order* _order, OrderItem* _orderItems[], int _itemCnt) {
+	orders.push_back(_order);
+	for (int i = 0; i < _itemCnt; i++) {
+		orderItems.push_back(_orderItems[i]);
+	}
+	saveToFile();
+}
+
+Order* OnlineStore::searchOrder(string _oin) {
+	for (Order* order : orders) {
+		if (*order == _oin) {
+			return order;
+		}
+	}
+	return NULL;
+}
+
 
 void OnlineStore::saveToFile() {
 	fstream fp;

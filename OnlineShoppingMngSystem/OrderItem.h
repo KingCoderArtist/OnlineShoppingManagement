@@ -18,5 +18,10 @@ public:
 		out << "ORDERITEM " << orderItem.oin << " " << orderItem.pin << " " << orderItem.price << " " << orderItem.count << endl;
 		return out;
 	}
+	double getPrice() { return price; }
+	void setPrice(double _price) { price = _price; }
+	int getCount() { return count; }
+	void setCount(int _count) { count = _count; }
+	string getPin() { return pin; }
 };
 

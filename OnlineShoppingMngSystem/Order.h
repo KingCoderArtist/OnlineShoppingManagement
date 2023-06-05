@@ -14,6 +14,7 @@ private:
 public:
 	Order(string, string);
 	Order(string, string, double, int);
+	bool operator==(string _oin);
 	friend ostream& operator<<(ostream& out, Order& order) {
 		out << "ORDER " << order.oin << " " << order.customer_email << " " << order.price << " " << order.count << endl;
 		return out;

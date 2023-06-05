@@ -87,6 +87,9 @@ public:
 	bool updateProduct(string _pin, string _name, double _rate, int _amount);
 	Product* searchProduct(string _pin);
 	void showProducts();
+
+	void addNewOrder(Order* _order, OrderItem* _orderItems[], int _itemCnt);
+	Order* searchOrder(string _oin);
 	/*
 	Save to DB
 	*/

@@ -13,3 +13,7 @@ Order::Order(string _oin, string _customer_email, double _price, int _count) {
 	price = _price;
 	count = _count;
 }
+
+bool Order::operator==(string _oin) {
+	return oin == _oin;
+}
