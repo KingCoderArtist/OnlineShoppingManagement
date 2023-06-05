@@ -19,7 +19,7 @@ private:
 	list<User *> users;
 	list<Product*> products;
 	list<Order*> orders;
-	list<OrderItem> orderItems;
+	list<OrderItem*> orderItems;
 	// singleton store instance
 	static OnlineStore* instance;
 

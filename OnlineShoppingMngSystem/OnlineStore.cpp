@@ -55,6 +55,22 @@ void OnlineStore::initialize() {
 				cout << _pin << " " << _name << " " << _rate << " " << _amount;
 				products.push_back(new Product(_pin, _name, _rate, _amount));
 			}
+			else if (type_token == "ORDER") {
+				string _oin, _customer_email;
+				double _price;
+				int _count;
+				fp >> _oin >> _customer_email >> _price >> _count;
+				cout << _oin << " " << _customer_email << " " << _price << " " << _count;
+				orders.push_back(new Order(_oin, _customer_email, _price, _count));
+			}
+			else if (type_token == "ORDERITEM") {
+				string _oin, _pin;
+				double _price;
+				int _count;
+				fp >> _oin >> _pin >> _price >> _count;
+				cout << _oin << " " << _pin << " " << _price << " " << _count;
+				orderItems.push_back(new OrderItem(_oin, _pin, _price, _count));
+			}
 			cout << endl;
 		}
 		fp.close();
@@ -261,9 +277,9 @@ bool OnlineStore::updateProduct(string _pin, string _name, double _rate, int _am
 void OnlineStore::showProducts() {
 	int count = 0;
 	printf(" === PRODUCT LIST === \n");
-	printf("%16s %16s %16s\n", "Identification", "Name", "Rate");
+	printf("%16s %16s %16s %16s\n", "Identification", "Name", "Rate", "Amount");
 	for (Product* product : products) {
-		printf("%16s %16s %16lf\n", product->getPin().c_str(), product->getName().c_str(), product->getRate());
+		printf("%16s %16s %16lf %16d\n", product->getPin().c_str(), product->getName().c_str(), product->getRate(), product->getAmount());
 		count += 1;
 	}
 	printf("Total: %d Products Registered\n\n", count);
@@ -288,6 +304,12 @@ void OnlineStore::saveToFile() {
 	}
 	for (Product* product : products) {
 		fp << *product;
+	}
+	for (Order* order : orders) {
+		fp << *order;
+	}
+	for (OrderItem* orderItem : orderItems) {
+		fp << *orderItem;
 	}
 	fp.close();
 }
