@@ -10,6 +10,8 @@ private:
 public:
 	Customer(string _email, string _password, string _name, string _address, string _number);
 	void userMenu();
+	void showOrders();
+	void placeOrderMenu();
 	void print(ostream&);
 	string getName();
 	void setName(string _name);

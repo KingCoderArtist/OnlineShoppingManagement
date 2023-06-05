@@ -85,7 +85,7 @@ public:
 	bool addNewProduct(string _pin, string _name, double _rate, int _amount);
 	bool deleteProduct(string _pin);
 	bool updateProduct(string _pin, string _name, double _rate, int _amount);
-	Product* searchProduct(string _name);
+	Product* searchProduct(string _pin);
 	void showProducts();
 	/*
 	Save to DB
