@@ -150,5 +150,26 @@ void Manager::productMenu() {
 }
 
 void Manager::orderMenu() {
-
+	string choice;
+	string _oin;
+	system("CLS");
+	cout << " === Welcome to Manage Order for Manager Menu === " << endl;
+	while (true) {
+		cout << "1 - View Orders" << endl;
+		cout << "2 - Search Order" << endl;
+		cout << "3 - Return to Manager Menu" << endl;
+		cout << "Enter your choice: ";
+		cin >> choice;
+		if (choice == "1") {
+			parent->showOrders();
+		}
+		if (choice == "2") {
+			cout << "Enter Order Identification Number: ";
+			cin >> _oin;
+			parent->showOrder(_oin);
+		}
+		if (choice == "3") {
+			return;
+		}
+	}
 }

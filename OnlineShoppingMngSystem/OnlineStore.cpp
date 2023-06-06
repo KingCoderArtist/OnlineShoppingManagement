@@ -64,12 +64,12 @@ void OnlineStore::initialize() {
 				orders.push_back(new Order(_oin, _customer_email, _price, _count));
 			}
 			else if (type_token == "ORDERITEM") {
-				string _oin, _pin;
+				string _oin, _pin, _pname;
 				double _price;
 				int _count;
-				fp >> _oin >> _pin >> _price >> _count;
-				cout << _oin << " " << _pin << " " << _price << " " << _count;
-				orderItems.push_back(new OrderItem(_oin, _pin, _price, _count));
+				fp >> _oin >> _pin >> _pname >> _price >> _count;
+				cout << _oin << " " << _pin << " " << _pname << " " << _price << " " << _count;
+				orderItems.push_back(new OrderItem(_oin, _pin, _pname, _price, _count));
 			}
 			cout << endl;
 		}
@@ -311,6 +311,36 @@ Order* OnlineStore::searchOrder(string _oin) {
 	return NULL;
 }
 
+void OnlineStore::showOrders() {
+	printf("%16s %16s %16s %16s\n", "Order ID", "Customer Email", "Price", "Amount");
+	for (Order* order : orders) {
+		printf("%16s %16s %16lf %16d\n", order->getOin().c_str(), order->getCustomerEmail().c_str(), order->getPrice(), order->getCount());
+	}
+}
+
+void OnlineStore::showOrder(string _oin) {
+	Order* order = searchOrder(_oin);
+	if (order == NULL) {
+		cout << "Order Identification Number Not Exist!" << endl;
+		return;
+	}
+	printf("%16s %16s %16s %16s\n", "Product ID", "Product Name", "Price", "Amount");
+	for (OrderItem* orderItem : orderItems) {
+		if (orderItem->getOin() == _oin) {
+			printf("%16s %16s %16lf %16d\n", orderItem->getPin().c_str(), orderItem->getPname().c_str(), orderItem->getPrice(), orderItem->getCount());
+		}
+	}
+	printf("Total Price: %lf\nTotal Amount: %d\n", order->getPrice(), order->getCount());
+}
+
+void OnlineStore::showCustomerOrders(string _customer_email) {
+	for (Order* order : orders) {
+		if (order->getCustomerEmail() == _customer_email) {
+			printf(" ===== %s ===== \n", order->getOin().c_str());
+			showOrder(order->getOin());
+		}
+	}
+}
 
 void OnlineStore::saveToFile() {
 	fstream fp;

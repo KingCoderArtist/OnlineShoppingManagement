@@ -29,7 +29,7 @@ void Customer::userMenu() {
 }
 
 void Customer::showOrders() {
-
+	parent->showCustomerOrders(email);
 }
 
 void Customer::placeOrderMenu() {
@@ -62,13 +62,18 @@ void Customer::placeOrderMenu() {
 		cin >> choice;
 		if (choice == "1") {
 			// show cart
+			printf("%16s %16s %16s\n", "Product Name", "Price", "Amount");
+			for (int i = 0; i < itemCnt; i++) {
+				printf("%16s %16lf %16d\n", orderItems[i]->getPname().c_str(), orderItems[i]->getPrice(), orderItems[i]->getCount());
+			}
+			printf("Total Price: %lf\nTotal Amount: %d\n", order->getPrice(), order->getCount());
 		}
 		if (choice == "2") {
 			// add product into the cart
 			parent->showProducts();
-			cout << "Enter Product Identification Number";
+			cout << "Enter Product Identification Number: ";
 			cin >> _pin;
-			cout << "Enter Amount you are going to buy";
+			cout << "Enter Amount you are going to buy: ";
 			cin >> _count;
 
 			Product* product = parent->searchProduct(_pin);
@@ -89,10 +94,15 @@ void Customer::placeOrderMenu() {
 					}
 				}
 				if (existFlag == 0) {
-					orderItems[itemCnt] = new OrderItem(_oin, _pin, product->getRate(), _count);
-					order->setCount(order->getCount() + _count);
-					order->setPrice(order->getPrice() + product->getRate() * _count);
-					itemCnt++;
+					if (_count <= product->getAmount()) {
+						orderItems[itemCnt] = new OrderItem(_oin, _pin, product->getName(), product->getRate(), _count);
+						order->setCount(order->getCount() + _count);
+						order->setPrice(order->getPrice() + product->getRate() * _count);
+						itemCnt++;
+					}
+					else {
+						cout << "The amount is too much." << endl;
+					}
 				}
 			}
 			else {
@@ -100,10 +110,20 @@ void Customer::placeOrderMenu() {
 			}
 		}
 		if (choice == "3") {
-			parent->addNewOrder(order, orderItems, itemCnt);
-			cout << "Order has been placed successfully." << endl;
-			return;
 			// place order
+			if (itemCnt > 0) {
+				parent->addNewOrder(order, orderItems, itemCnt);
+				for (int i = 0; i < itemCnt; i++) {
+					Product* product = parent->searchProduct(orderItems[i]->getPin());
+					product->setAmount(product->getAmount() - orderItems[i]->getCount());
+				}
+				cout << "Order has been placed successfully." << endl;
+				parent->saveToFile();
+				return;
+			}
+			else {
+				cout << "Can not place blank order." << endl;
+			}
 		}
 		if (choice == "4") {
 			return;

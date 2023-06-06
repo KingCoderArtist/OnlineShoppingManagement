@@ -19,6 +19,8 @@ public:
 		out << "ORDER " << order.oin << " " << order.customer_email << " " << order.price << " " << order.count << endl;
 		return out;
 	}
+	string getOin() { return oin; }
+	string getCustomerEmail() { return customer_email; }
 	double getPrice() { return price; }
 	void setPrice(double _price) { price = _price; }
 	int getCount() { return count; }

@@ -90,6 +90,10 @@ public:
 
 	void addNewOrder(Order* _order, OrderItem* _orderItems[], int _itemCnt);
 	Order* searchOrder(string _oin);
+
+	void showOrders();
+	void showOrder(string _oin);
+	void showCustomerOrders(string _customer_email);
 	/*
 	Save to DB
 	*/
